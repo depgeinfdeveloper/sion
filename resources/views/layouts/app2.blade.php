@@ -5,19 +5,20 @@
     <meta charset="utf-8" />
     <title>Shreyu - Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-    @stack('styles_plugins')
+    @stack('styles')
 
     <!-- App css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <div class="content-page">
             <div class="content">
 
-              @yield('contenido')
+                @yield('contenido')
 
             </div> <!-- content -->
 
@@ -49,8 +50,7 @@
                         <div class="col-12">
                             2020 &copy; Iglesia de Dios - Sociedad Misionera Mundial <i
                                 class='uil uil-heart text-danger font-size-12'></i>
-                                 <a href="http://peru.watv.org/"
-                                target="_blank">Vistanos</a>
+                            <a href="http://peru.watv.org/" target="_blank">Vistanos</a>
                         </div>
                     </div>
                 </div>

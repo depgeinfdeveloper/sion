@@ -1,14 +1,16 @@
 @extends('layouts.app2')
+
 @push('styles')
-    <link href="{{ asset('assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" rel="stylesheet"
-        type="text/css" />
+<link href="{{ asset('/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/assets/libs/multiselect/multi-select.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" rel="stylesheet"
+    type="text/css" />
 @endpush
+
 @section('contenido')
     <!-- Start Content-->
     <div class="container-fluid">
@@ -56,9 +58,10 @@
                         <h4 class="header-title mt-0 mb-1">Asistencia</h4>
                         <p class="sub-header">Registro de actividades</p>
                         <form action="">
+                            @csrf
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
-                                <input type="text" class="form-control flatpickr">
+                                <input type="text" class="form-control basic-datepicker">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Bautismo | <strong>100 Km.</strong></label>
@@ -90,9 +93,10 @@
                         <p class="sub-header">Registro de actividades</p>
 
                         <form action="">
+                            @csrf
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
-                                <input type="text" class="form-control flatpickr">
+                                <input type="text" class="form-control basic-datepicker">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Diezmo de miembro nuevo | <strong>100 Km.</strong></label>
@@ -116,9 +120,10 @@
                         <p class="sub-header">Registro de actividades</p>
 
                         <form action="">
+                            @csrf
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad | <strong>50 Km.</strong></label>
-                                <input type="text" class="form-control flatpickr">
+                                <input type="text" class="form-control basic-datepicker">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Presentar nuestra iglesia (1 minuto o mas) | <strong>3 Km.</strong></label>
@@ -154,9 +159,10 @@
                         <h4 class="header-title mt-0 mb-1">Otros</h4>
                         <p class="sub-header">Registro de actividades</p>
                         <form action="">
+                            @csrf
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
-                                <input type="text" class="form-control flatpickr">
+                                <input type="text" class="form-control basic-datepicker">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Leer 1 capítulo de la Biblia | <strong>1 Km.</strong></label>
@@ -214,20 +220,24 @@
     <script src="{{ asset('assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
     <!-- Init js-->
+    {{-- <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script> --}}
     <script>
-        flatpickr(".flatpickr", {
-            dateFormat: "d.m.Y",
-        });
+        document.addEventListener("DOMContentLoaded", () => {
 
-        $('[data-toggle="touchspin"]').TouchSpin({
+            let optional_config = {
+            dateFormat: "Y-m-d",
+            }
+            $(".basic-datepicker").flatpickr(optional_config);
+
+            $('[data-toggle="touchspin"]').TouchSpin({
             min: 0,
             max: 100,
             boostat: 5,
             maxboostedstep: 10,
             initval: 0
-        });
+            });
 
-        $("#indice").change(function(e) {
+            $("#indice").change(function(e) {
             let indice = e.target.value;
             let asistencia = $('#asistencia');
             let melquisedec = $('#melquisedec');
@@ -235,30 +245,30 @@
             let otros = $('#otros');
 
             if (indice === '1') {
-                asistencia.show();
-                melquisedec.hide();
-                predicacion.hide();
-                otros.hide();
+            asistencia.show();
+            melquisedec.hide();
+            predicacion.hide();
+            otros.hide();
+            } else if (indice === '2') {
+            asistencia.hide();
+            melquisedec.show();
+            predicacion.hide();
+            otros.hide();
+            } else if (indice === '3') {
+            asistencia.hide();
+            melquisedec.hide();
+            predicacion.show();
+            otros.hide();
+            } else if (indice === '4') {
+            asistencia.hide();
+            melquisedec.hide();
+            predicacion.hide();
+            otros.show();
             }
-            else if(indice === '2') {
-                asistencia.hide();
-                melquisedec.show();
-                predicacion.hide();
-                otros.hide();
-            }
-            else if(indice === '3') {
-                asistencia.hide();
-                melquisedec.hide();
-                predicacion.show();
-                otros.hide();
-            }
-            else if(indice === '4') {
-                asistencia.hide();
-                melquisedec.hide();
-                predicacion.hide();
-                otros.show();
-            }
-        })
+            })
 
+
+
+        });
     </script>
 @endpush
