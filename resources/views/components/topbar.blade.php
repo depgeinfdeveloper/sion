@@ -66,7 +66,7 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                             <div class="notify-icon">
-                                <img src="assets/images/users/avatar-1.jpg" class="img-fluid rounded-circle" alt="" />
+                                <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" class="img-fluid rounded-circle" alt="" />
                             </div>
                             <p class="notify-details">Karen Robinson</p>
                             <p class="text-muted mb-0 user-msg">
@@ -77,7 +77,7 @@
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item notify-item border-bottom">
                             <div class="notify-icon">
-                                <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                <img src="{{ asset('assets/images/users/avatar-2.jpg') }}" class="img-fluid rounded-circle" alt="" />
                             </div>
                             <p class="notify-details">Cristina Pride</p>
                             <p class="text-muted mb-0 user-msg">

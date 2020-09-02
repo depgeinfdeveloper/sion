@@ -26,10 +26,15 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a class="dropdown-item notify-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                     <i data-feather="log-out" class="icon-dual icon-xs mr-2"></i>
                     <span>Cerrar Sesión</span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
@@ -46,21 +51,49 @@
                         <span> Inicio </span>
                     </a>
                 </li>
+
+
                 <li class="menu-title">Registro</li>
+                @if (Auth::user()->id_nivel === 1 || Auth::user()->id_nivel === 2)
                 <li>
                     <a href="{{route('administrador.registro-usuario')}}">
                         <i data-feather="calendar"></i>
                         <span> Usuarios </span>
                     </a>
                 </li>
+                @endif
+                @if (Auth::user()->id_nivel === 2 || Auth::user()->id_nivel === 3 || Auth::user()->id_nivel === 1)
+                    <li>
+                        <a href="{{ route('hermano.registro-reporte') }}">
+                            <i data-feather="calendar"></i>
+                            <span> Reporte de Kilometraje </span>
+                        </a>
+                    </li>
+                @endif
                 <li class="menu-title">Bandeja</li>
-
+                @if (Auth::user()->id_nivel === 1)
                 <li>
                     <a href="{{route('administrador.bandeja-usuario')}}" aria-expanded="false">
                         <i data-feather="grid"></i>
-                        <span> Usuarios </span>
+                        <span> Miembros </span>
                     </a>
                 </li>
+                @elseif(Auth::user()->id_nivel === 2)
+                <li>
+                    <a href="{{route('lider.bandeja-mis-miembros')}}" aria-expanded="false">
+                        <i data-feather="grid"></i>
+                        <span> Mis miembros </span>
+                    </a>
+                </li>
+                @elseif(Auth::user()->id_nivel === 2 || Auth::user()->id_nivel === 3 || Auth::user()->id_nivel === 1)
+                <li>
+                    <a href="{{ route('hermano.mi-reportes') }}" aria-expanded="false">
+                        <i data-feather="grid"></i>
+                        <span> Mis Reportes </span>
+                    </a>
+                </li>
+                @endif
+
             </ul>
         </div>
         <!-- End Sidebar -->

@@ -10,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+
     @stack('styles_plugins')
 
     <!-- App css -->
@@ -73,9 +74,10 @@
     <!-- Vendor js -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
+    @stack('scripts')
     <!-- App js -->
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
-    @stack('scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 

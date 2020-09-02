@@ -7,13 +7,13 @@
             <nav aria-label="breadcrumb" class="float-right mt-1">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Sion</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                    <li class="breadcrumb-item active" aria-current="page">Mis reportes</li>
                 </ol>
             </nav>
-            <h4 class="mb-1 mt-0">Bienvenido</h4>
+            <h4 class="mb-1 mt-0">Mis Reportes</h4>
         </div>
     </div>
 
 </div> <!-- container-fluid -->
 
-@endsection
+@endsections

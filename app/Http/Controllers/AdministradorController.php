@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Nivel;
+use App\Region;
 use App\Iglesia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class AdministradorController extends Controller
@@ -30,7 +32,7 @@ class AdministradorController extends Controller
         $usuarios = DB::table('users')
             ->join('iglesia', 'users.id_iglesia', '=', 'iglesia.id')
             ->join('nivel', 'users.id_nivel', '=', 'nivel.id')
-            ->select('users.id', 'users.name', 'users.email', 'iglesia.nombre as iglesia_name', 'nivel.nombre as nivel_name')
+            ->select('users.id', 'users.name', 'users.email', 'users.estado', 'iglesia.nombre as iglesia_name', 'nivel.nombre as nivel_name')
             ->paginate(10);
 
         return view('admin.bandeja-usuario', compact('usuarios'));
@@ -46,6 +48,7 @@ class AdministradorController extends Controller
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'nivel' => ['required', 'in:1,2,3', 'not_in:0'],
                 'iglesia' => ['required', 'in:1,2,3', 'not_in:0'],
+                'region' => ['required', 'not_in:0'],
                 'password' => ['required', 'string', 'min:8',],
 
             ]
@@ -63,6 +66,7 @@ class AdministradorController extends Controller
         $user->password = Hash::make($request->password);
         $user->id_nivel = $request->nivel;
         $user->id_iglesia = $request->iglesia;
+        $user->id_region = $request->region;
         $user->save();
 
         return redirect('/admin/registro-usuario')->with('message', "Felicitaciones acabas de registrar al hermano  $request->name de manera correcta");
@@ -107,9 +111,26 @@ class AdministradorController extends Controller
         return redirect('/admin/bandeja-usuario')->with('message', "Felicitaciones acabas de editar los datos del hermano  $request->name de manera correcta");
     }
 
-    public function eliminarUsuario($id)
+    public function updateEstado(Request $request)
     {
+        if (!$request->ajax()) return redirect('/');
+        if ($request->accion == 'desactivar') {
+            User::where('id', $request->idusuario)
+                ->update([
+                    'estado' => 0
+                ]);
+        } else if ($request->accion == 'activar') {
+            User::where('id', $request->idusuario)
+                ->update([
+                    'estado' => 1
+                ]);
+        }
+    }
 
-        return view('admin.bandeja-usuario');
+    public function buscarRegion(Request $request){
+
+        $regiones = Region::where('id_iglesia',$request->idiglesia)->get();
+        return Response::json($regiones);
+
     }
 }

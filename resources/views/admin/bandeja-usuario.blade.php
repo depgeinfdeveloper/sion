@@ -45,8 +45,17 @@
                                     <td>{{ $usuario->iglesia_name}}</td>
                                     <td>{{ $usuario->nivel_name}}</td>
                                     <td>
-                                        <a href="{{url('admin/'.$usuario->id.'/editar-usuario')}}" class="btn btn-xs btn-block btn-warning">Editar</button>
-                                        <a href="#" class="btn btn-xs btn-block btn-danger">Eliminar</button>
+                                        @if ($usuario->estado === 1)
+                                        <a href="{{url('admin/'.$usuario->id.'/editar-usuario')}}"
+                                            class="btn btn-xs btn-block btn-warning">Editar</a>
+                                        <a href="#" class="btn btn-xs btn-block btn-danger btn-desactivar"
+                                            iduser="{{ $usuario->id }}">Desactivar</a>
+                                        @elseif($usuario->estado === 0)
+                                        <a href="{{url('admin/'.$usuario->id.'/editar-usuario')}}"
+                                            class="btn btn-xs btn-block btn-warning">Editar</a>
+                                        <a href="#" class="btn btn-xs btn-block btn-success btn-activar"
+                                            iduser="{{ $usuario->id }}">Activar</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @empty
@@ -72,3 +81,68 @@
 </div> <!-- container-fluid -->
 
 @endsection
+@push('scripts')
+<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.all.js') }}"></script>
+<script>
+/* -------------------------------------------------------------------------- */
+/*                            desactivamos al usuario                            */
+/* -------------------------------------------------------------------------- */
+    $(".btn-desactivar").on('click', function(e){
+        e.preventDefault();
+        let id_usuario = $(this).attr("iduser");
+        let url = `http://sion.test/admin/update-estado?idusuario=${id_usuario}&accion=desactivar`;
+        axios.get(url)
+        .then((response) => {
+            if(response.status === 200){
+                swal(
+                    'Desactivado!',
+                    'El usuario ha sido desactivado con éxito.',
+                    'success'
+                ).then(function (result) {
+                if (result.value) {
+                    window.location = "/admin/bandeja-usuario";
+                }
+                });
+            }
+        })
+        .catch(e => {
+        // Capturamos los errores
+        })
+    })
+
+/* -------------------------------------------------------------------------- */
+/*                            activamos al usuario                            */
+/* -------------------------------------------------------------------------- */
+
+    $(".btn-activar").on('click', function(e){
+        e.preventDefault();
+        let id_usuario = $(this).attr("iduser");
+        let url = `http://sion.test/admin/update-estado?idusuario=${id_usuario}&accion=activar`;
+        axios.get(url)
+        .then((response) => {
+            if(response.status === 200){
+                swal(
+                    'Activado!',
+                    'El usuario ha sido activado con éxito.',
+                    'success'
+                ).then(function (result) {
+                if (result.value) {
+                    window.location = "/admin/bandeja-usuario";
+                }
+                });
+            }
+        })
+        .catch(e => {
+        // Capturamos los errores
+        })
+    })
+
+
+
+
+
+
+
+</script>
+
+@endpush

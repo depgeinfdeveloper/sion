@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Indice extends Model
+class Region extends Model
 {
-    protected $table="indice";
+    protected $table = "region";
 }
