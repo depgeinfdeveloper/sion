@@ -52,4 +52,5 @@ Route::get('/lider/mis-miembros','LiderController@misMiembros')->name('lider.ban
 /* -------------------------------------------------------------------------- */
 Route::get('/hermano','HermanoController@index')->name('hermano');
 Route::get('/hermano/registro/reporte','HermanoController@registroReporte')->name('hermano.registro-reporte');
+Route::post('/hermano/registro/reporte','HermanoController@storeReporte')->name('hermano.store-reporte');
 Route::get('/hermano/reportes/','HermanoController@miReportes')->name('hermano.mi-reportes');

@@ -57,27 +57,28 @@
                     <div class="card-body">
                         <h4 class="header-title mt-0 mb-1">Asistencia</h4>
                         <p class="sub-header">Registro de actividades</p>
-                        <form action="">
+                        <form action="{{ route('hermano.store-reporte') }}" method="POST" id="form-asistencia">
                             @csrf
+                            <input type="number" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
-                                <input type="text" class="form-control basic-datepicker">
+                                <input type="text" class="form-control basic-datepicker" id="fecha_reporte" name="fecha_reporte">
                             </div>
                             <div class="form-group mb-3">
                                 <label>Bautismo | <strong>100 Km.</strong></label>
-                                <input data-toggle="touchspin" type="text" name="a1">
+                                <input data-toggle="touchspin" type="text" name="asistencia[]">
                             </div>
                             <div class="form-group mb-3">
                                 <label>1 culto de un miembro nuevo | <strong>20 Km.</strong></label>
-                                <input data-toggle="touchspin" type="text" name="a2">
+                                <input data-toggle="touchspin" type="text" name="asistencia[]">
                             </div>
                             <div class="form-group mb-3">
                                 <label>4 cultos de un miembro nuevo | <strong>20 Km.</strong></label>
-                                <input data-toggle="touchspin" type="text" name="a3">
+                                <input data-toggle="touchspin" type="text" name="asistencia[]">
                             </div>
                             <div class="form-group mb-3">
                                 <label>1 culto de una oveja perdida | <strong>10 Km.</strong></label>
-                                <input data-toggle="touchspin" type="text" name="a4">
+                                <input data-toggle="touchspin" type="text" name="asistencia[]">
                             </div>
                             <div>
                                 <button class="btn btn-xs btn-success btn-block">Registrar</button>
@@ -92,8 +93,9 @@
                         <h4 class="header-title mt-0 mb-1">Melquisedec</h4>
                         <p class="sub-header">Registro de actividades</p>
 
-                        <form action="">
+                        <form action="" id="form-melquisedec">
                             @csrf
+                            <input type="number" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
                                 <input type="text" class="form-control basic-datepicker">
@@ -119,8 +121,9 @@
                         <h4 class="header-title mt-0 mb-1">Predicación</h4>
                         <p class="sub-header">Registro de actividades</p>
 
-                        <form action="">
+                        <form action="" id="form-predicacion">
                             @csrf
+                            <input type="number" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad | <strong>50 Km.</strong></label>
                                 <input type="text" class="form-control basic-datepicker">
@@ -158,8 +161,9 @@
                     <div class="card-body">
                         <h4 class="header-title mt-0 mb-1">Otros</h4>
                         <p class="sub-header">Registro de actividades</p>
-                        <form action="">
+                        <form action="" id="form-otros">
                             @csrf
+                            <input type="number" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
                                 <input type="text" class="form-control basic-datepicker">
@@ -245,21 +249,25 @@
             let otros = $('#otros');
 
             if (indice === '1') {
+            $('#form-asistencia #indice').val(indice)
             asistencia.show();
             melquisedec.hide();
             predicacion.hide();
             otros.hide();
             } else if (indice === '2') {
+            $('#form-melquisedec #indice').val(indice)
             asistencia.hide();
             melquisedec.show();
             predicacion.hide();
             otros.hide();
             } else if (indice === '3') {
+            $('#form-predicacion #indice').val(indice)
             asistencia.hide();
             melquisedec.hide();
             predicacion.show();
             otros.hide();
             } else if (indice === '4') {
+            $('#form-otros #indice').val(indice)
             asistencia.hide();
             melquisedec.hide();
             predicacion.hide();

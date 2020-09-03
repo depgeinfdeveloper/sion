@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sion
 -- ------------------------------------------------------
@@ -233,13 +233,13 @@ CREATE TABLE `reporte` (
   `id_indice` int(11) DEFAULT NULL,
   `id_actividad` int(11) DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `klm_total_dia` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `klm_total` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha_reporte` date DEFAULT NULL,
   `created_at` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `updated_at` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `estado` varchar(45) COLLATE utf8_spanish2_ci DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +248,7 @@ CREATE TABLE `reporte` (
 
 LOCK TABLES `reporte` WRITE;
 /*!40000 ALTER TABLE `reporte` DISABLE KEYS */;
-INSERT INTO `reporte` VALUES (1,'1',1,1,1,'1000',NULL,NULL,NULL,NULL);
+INSERT INTO `reporte` VALUES (14,'6',1,4,5,'500','2020-09-02','2020-09-03 00:21:47','2020-09-03 00:21:47','1'),(15,'6',1,1,1,'100','2020-09-02','2020-09-03 00:22:31','2020-09-03 00:22:31','1'),(16,'6',1,2,1,'200','2020-09-02','2020-09-03 00:22:31','2020-09-03 00:22:31','1'),(17,'6',1,3,1,'200','2020-09-02','2020-09-03 00:22:31','2020-09-03 00:22:31','1'),(18,'6',1,4,1,'100','2020-09-02','2020-09-03 00:22:32','2020-09-03 00:22:32','1');
 /*!40000 ALTER TABLE `reporte` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-02 17:00:38
+-- Dump completed on 2020-09-02 19:24:17
