@@ -19,9 +19,10 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mt-0 mb-1">Bandeja de miembros registrados</h4>
-                    <p class="sub-header">
+                    <p class="sub-header mb-0">
                         A continuación se mostrará el total de miembros registrados.
                     </p>
+                    <p><strong>Recuerda que no podras editar el campo Iglesia</strong></p>
 
                     <div class="table-responsive">
                         <table class="table mb-0">

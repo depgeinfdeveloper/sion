@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Grupo;
 use App\Nivel;
 use App\Region;
 use App\Iglesia;
@@ -41,13 +42,14 @@ class AdministradorController extends Controller
     public function registrarUsuario(Request $request)
     {
 
+
         $validacion = Validator::make(
             $request->all(),
             [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'nivel' => ['required', 'in:1,2,3', 'not_in:0'],
-                'iglesia' => ['required', 'in:1,2,3', 'not_in:0'],
+                'nivel' => ['required', 'in:1,2,3,4,5', 'not_in:0'],
+                'iglesia' => ['required', 'not_in:0'],
                 'region' => ['required', 'not_in:0'],
                 'password' => ['required', 'string', 'min:8',],
 
@@ -67,6 +69,7 @@ class AdministradorController extends Controller
         $user->id_nivel = $request->nivel;
         $user->id_iglesia = $request->iglesia;
         $user->id_region = $request->region;
+        $user->id_grupo = $request->grupo;
         $user->save();
 
         return redirect('/admin/registro-usuario')->with('message', "Felicitaciones acabas de registrar al hermano  $request->name de manera correcta");
@@ -130,6 +133,12 @@ class AdministradorController extends Controller
     public function buscarRegion(Request $request){
 
         $regiones = Region::where('id_iglesia',$request->idiglesia)->get();
+        return Response::json($regiones);
+
+    }
+    public function buscarGrupo(Request $request){
+
+        $regiones = Grupo::where('id_region',$request->idregion)->get();
         return Response::json($regiones);
 
     }

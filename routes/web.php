@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// mostramos la vista principal del admin
 
 /* ========================================================================== */
 /*            GESTION DE USUARIOS DEL PERFIL ADMINISTRADOR            */
@@ -38,7 +37,8 @@ Route::get('/admin/update-estado', 'AdministradorController@updateEstado');
 // mostramos la bandeja de usuarios del admin
 Route::get('/admin/bandeja-usuario', 'AdministradorController@bandejaUsuario')->name('administrador.bandeja-usuario');
 // peticion para select dinamico
-Route::post('admin/select2', 'AdministradorController@buscarRegion')->name('admin.select2');
+Route::post('admin/regiones', 'AdministradorController@buscarRegion')->name('admin.regiones');
+Route::post('admin/grupos', 'AdministradorController@buscarGrupo')->name('admin.grupos');
 
 /* -------------------------------------------------------------------------- */
 /*                      GESTION DE DATOS DEL PERFIL LIDER                     */
@@ -51,6 +51,10 @@ Route::get('/lider/mis-miembros','LiderController@misMiembros')->name('lider.ban
 /*                   GESTION DE DATOS DEL PERFIL DE HERMANO                   */
 /* -------------------------------------------------------------------------- */
 Route::get('/hermano','HermanoController@index')->name('hermano');
-Route::get('/hermano/registro/reporte','HermanoController@registroReporte')->name('hermano.registro-reporte');
-Route::post('/hermano/registro/reporte','HermanoController@storeReporte')->name('hermano.store-reporte');
-Route::get('/hermano/reportes/','HermanoController@miReportes')->name('hermano.mi-reportes');
+
+/* ========================================================================== */
+/*                 GESTION DE COMPONENTES DE TODOS LOS NIVELES                */
+/* ========================================================================== */
+Route::get('/reporte/registro-reporte','ReporteController@registroReporte')->name('reporte.registro-reporte');
+Route::post('/reporte/registro-reporte','ReporteController@storeReporte')->name('reporte.store-reporte');
+Route::get('/reporte/mis-reportes/','ReporteController@miReportes')->name('reporte.mi-reportes');

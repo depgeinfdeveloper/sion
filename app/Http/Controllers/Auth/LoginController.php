@@ -46,6 +46,10 @@ class LoginController extends Controller
         }else if(Auth::user()->id_nivel == 2){
             return route('lider');
         }else if(Auth::user()->id_nivel == 3){
+            return route('lider');
+        }else if(Auth::user()->id_nivel == 4){
+            return route('obrero');
+        }else if(Auth::user()->id_nivel == 5){
             return route('hermano');
         }
     }

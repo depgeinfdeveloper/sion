@@ -57,9 +57,9 @@
                     <div class="card-body">
                         <h4 class="header-title mt-0 mb-1">Asistencia</h4>
                         <p class="sub-header">Registro de actividades</p>
-                        <form action="{{ route('hermano.store-reporte') }}" method="POST" id="form-asistencia">
+                        <form action="{{ route('reporte.store-reporte') }}" method="POST" id="form-asistencia">
                             @csrf
-                            <input type="number" name="indice" id="indice">
+                            <input type="hidden" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
                                 <input type="text" class="form-control basic-datepicker" id="fecha_reporte" name="fecha_reporte">
@@ -95,7 +95,7 @@
 
                         <form action="" id="form-melquisedec">
                             @csrf
-                            <input type="number" name="indice" id="indice">
+                            <input type="hidden" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
                                 <input type="text" class="form-control basic-datepicker">
@@ -123,9 +123,9 @@
 
                         <form action="" id="form-predicacion">
                             @csrf
-                            <input type="number" name="indice" id="indice">
+                            <input type="hidden" name="indice" id="indice">
                             <div class="form-group mb-3">
-                                <label>Fecha de la actividad | <strong>50 Km.</strong></label>
+                                <label>Fecha de la actividad</strong></label>
                                 <input type="text" class="form-control basic-datepicker">
                             </div>
                             <div class="form-group mb-3">
@@ -163,7 +163,7 @@
                         <p class="sub-header">Registro de actividades</p>
                         <form action="" id="form-otros">
                             @csrf
-                            <input type="number" name="indice" id="indice">
+                            <input type="hidden" name="indice" id="indice">
                             <div class="form-group mb-3">
                                 <label>Fecha de la actividad</label>
                                 <input type="text" class="form-control basic-datepicker">
